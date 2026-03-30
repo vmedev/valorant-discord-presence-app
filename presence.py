@@ -21,7 +21,7 @@ class DiscordPresence:
             },
             {
                 "details": f'Favorite Agent: {stats["favorite_agent"]}',
-                "state": 'Не важно кто ты важно то что ты',
+                "state": 'Link to download the app below',
             },
         ]
 
@@ -32,4 +32,8 @@ class DiscordPresence:
             **slide,
             start=self.start_time,
             large_image="valorant",
+            buttons=[{"label": "GitHub", "url": "https://github.com/vmedev/valorant-discord-presence-core"}]
         )
+    
+    def clear(self):
+        self.rpc.clear()

@@ -14,7 +14,6 @@ last_api_time = None
 
 app_config = {}
 
-
 def api_loop():
     global latest_stats, latest_error, last_api_time
 
@@ -63,11 +62,20 @@ def rpc_loop():
                 print("[RPC UPDATE ERROR]", e)
 
         stop_event.wait(app_config["UPDATE_INTERVAL"])
+        
+    try:
+        presence.clear()
+        print("[RPC] cleared")
+    except Exception as e:
+        print("[RPC CLEAR ERROR]", e)
 
-
-def start_app(config):
+def stop_app():
+    stop_event.set()
+    
+def start_app(config, on_error=None):
     global latest_stats, latest_error, last_api_time, app_config
     app_config = config
+    stop_event.clear()
 
     try:
         latest_stats = get_stats(app_config)
@@ -76,9 +84,13 @@ def start_app(config):
     except Exception as e:
         latest_error = str(e)
         print("[START ERROR]", e)
+        if on_error:
+            on_error(str(e)) 
+        return
 
     threading.Thread(target=api_loop, daemon=True).start()
     threading.Thread(target=rpc_loop, daemon=True).start()
 
-    while True:
-        time.sleep(60)
+    while not stop_event.is_set():
+        time.sleep(1)
+
