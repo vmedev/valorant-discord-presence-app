@@ -3,7 +3,7 @@
 Hi @everyone!
 Show your Valorant stats directly in your Discord profile using Rich Presence.
 
-![Preview](images/preview.png)
+![Preview](img_for_github/preview.png)
 
 ## Interface
 
