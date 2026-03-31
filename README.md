@@ -15,7 +15,7 @@ Show your Valorant stats directly in your Discord profile using Rich Presence.
 - [Discord Application ID](https://discord.com/developers/applications)
 
 ## Installation
-1. Download `app.exe` from [Releases](../../releases)
+1. Download `VSDP.exe` from [Releases](../../releases)
 2. Run it — no installation needed
 3. Fill in your details and click Start
 
