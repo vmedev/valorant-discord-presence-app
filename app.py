@@ -1,12 +1,12 @@
 import threading
 import customtkinter
 from main import start_app, stop_app
-from config import load_config, save_config
+from app_config import load_config, save_config
 
 class App(customtkinter.CTk):  
     def __init__(self):
         super().__init__()
-        self.title("MyApp")
+        self.title("Valorant Stats in Discord Presence")
         self.resizable(0, 0)
         
         frame = customtkinter.CTkFrame(master=self)
